@@ -16,7 +16,7 @@ feature 'View hit points' do
     sign_in_and_play
     click_button 'Attack!'
     expect(page).not_to have_content "#{@name2}: #{Player::DEFAULT_HITPOINTS}HP"
-    expect(page).to have_content "#{@name2}: #{Player::DEFAULT_HITPOINTS - Player::ATTACK_DAMAGE}HP"
+    expect(page).to have_content "#{@name2}: #{Player::DEFAULT_HITPOINTS - Game::ATTACK_DAMAGE}HP"
     
   end
 end

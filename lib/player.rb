@@ -1,6 +1,6 @@
 class Player
   DEFAULT_HITPOINTS = 100
-  ATTACK_DAMAGE = 5
+
 
   def initialize(name)
     @name = name

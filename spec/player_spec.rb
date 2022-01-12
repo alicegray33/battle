@@ -17,7 +17,7 @@ describe Player do
 
   describe '#reduce_hitpoints' do
     it 'changes hitpoints by 20' do
-      expect { subject.reduce_hitpoints(Player::ATTACK_DAMAGE) }.to change { subject.hitpoints }.by(Player::ATTACK_DAMAGE * -1)
+      expect { subject.reduce_hitpoints(10) }.to change { subject.hitpoints }.by(-10)
     end
   end
 end

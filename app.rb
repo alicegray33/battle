@@ -32,7 +32,7 @@ class Battle < Sinatra::Base
 
   get '/attack' do
     load_players
-    @player_2.reduce_hitpoints(Player::ATTACK_DAMAGE)
+    Game.new.attack(@player_2)
     
     erb :attack
   end
