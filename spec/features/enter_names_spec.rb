@@ -6,7 +6,7 @@ feature 'Enter names' do
   scenario 'Allows players to enter their name' do
     sign_in_and_play
     
-    expect(page).to have_content "John vs Julie"
+    expect(page).to have_content "#{@name1} vs #{@name2}"
     
   end
 end
