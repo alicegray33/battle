@@ -14,6 +14,11 @@ class Battle < Sinatra::Base
     erb :index
   end
 
+  def load_players
+    @player_1 = $player_1
+    @player_2 = $player_2
+  end
+
   post '/names' do
     $player_1 = Player.new(params[:player_1_name])
     $player_2 = Player.new(params[:player_2_name])
@@ -21,14 +26,14 @@ class Battle < Sinatra::Base
   end
 
   get '/play' do
-    @player_1_name = $player_1.name
-    @player_2_name = $player_2.name
+    load_players
     erb :play
   end
 
   get '/attack' do
-    @player_1_name = $player_1.name
-    @player_2_name = $player_2.name 
+    load_players
+    @player_2.reduce_hitpoints(Player::ATTACK_DAMAGE)
+    
     erb :attack
   end
 
