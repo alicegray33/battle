@@ -1,4 +1,7 @@
-<h2>You attacked <%= @player_2.name %></h2><br>
+<h2>You attacked <%= @game.player_2.name %></h2><br>
 
 
-<%= @player_2.name %>: <%= @player_2.hitpoints %>HP
+<%= @game.player_2.name %>: <%= @game.player_2.hitpoints %>HP
+<br>
+<%= @game.attacker.name %>'s turn
+<a href="/play">Continue</a>

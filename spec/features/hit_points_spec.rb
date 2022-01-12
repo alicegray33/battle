@@ -9,7 +9,7 @@ feature 'View hit points' do
   scenario 'attack player 2 and get confirmation' do
     sign_in_and_play
     click_button 'Attack!'
-    expect(page).to have_content "You attacked #{@name2}"
+    expect(page).to have_content "#{@name1} attacked #{@name2}!"
   end
 
   scenario 'expect to see hitpoints reduced by 20' do
@@ -18,5 +18,11 @@ feature 'View hit points' do
     expect(page).not_to have_content "#{@name2}: #{Player::DEFAULT_HITPOINTS}HP"
     expect(page).to have_content "#{@name2}: #{Player::DEFAULT_HITPOINTS - Game::ATTACK_DAMAGE}HP"
     
+  end
+  scenario 'second attack reduces other players hitpoints' do
+    sign_in_and_play
+    click_button 'Attack!'
+    click_button 'Attack!'
+    expect(page).to have_content "#{@name1}: #{Player::DEFAULT_HITPOINTS - Game::ATTACK_DAMAGE}HP"
   end
 end
