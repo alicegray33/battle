@@ -1,15 +1,18 @@
 feature 'View hit points' do
+  let(:damage){ 5 }
 
-  scenario 'see player 2 hitpoints' do
+  scenario 'see both player hitpoints' do
     sign_in_and_play
-    # save_and_open_page
+    expect(page).to have_content "#{@name1}: #{Player::DEFAULT_HITPOINTS}HP"
     expect(page).to have_content "#{@name2}: #{Player::DEFAULT_HITPOINTS}HP"
   end
 
-  scenario 'attack player 2 and get confirmation' do
+  scenario 'player 1 attacks player 2 and gets confirmation' do
     sign_in_and_play
     click_button 'Attack!'
-    expect(page).to have_content "#{@name1} attacked #{@name2}!"
+    # allow(player_2).to receive(:reduce_hitpoints).with(damage)
+    # save_and_open_page
+    expect(page).to have_content "#{@name1} attacked #{@name2} for #{damage} damage!"
   end
 
   scenario 'expect to see hitpoints reduced by 20' do

@@ -32,7 +32,7 @@
         <tr>
           <td colspan="2" style="text-align:center; color: black"><h1>
             <% if @game.last_action == :attack %>
-              <%= @game.defender.name %> attacked <%= @game.attacker.name %>!
+              <%= @game.defender.name %> attacked <%= @game.attacker.name %> for <%= @game.attacker.last_hit %> damage!
             <% else %>
               <br>
             <% end %>

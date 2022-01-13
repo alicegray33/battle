@@ -1,5 +1,5 @@
 def sign_in_and_play
-  @name1 = "Globtruk"
+  @name1 = "Globtuk"
   @name2 = "Mintar"
   visit('/')
   fill_in :player_1_name, with: @name1
