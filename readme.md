@@ -2,6 +2,10 @@
 
 As part of our pairing project for our week on web apps we have been given some user stories around creating a basic game called Battle!
 
+## Caveat
+
+The course has told us to use global variables for this project while also informing us how its bad to use them. Their reason being is that we should use a database instead but we're not learning about them until next week.
+
 ## User Stories
 
 Here are the complete User Stories for this project.
