@@ -2,9 +2,9 @@ require 'game'
 
 describe Game do
   subject(:game) { described_class.new(player_1, player_2) }
-  let(:player_1) { double :player1 }
-  let(:player_2) { double :player2 }
-
+  let(:player_1) { double(:player1, hitpoints: 0, reduce_hitpoints: 5) }
+  let(:player_2) { double(:player2, hitpoints: 0, reduce_hitpoints: 5) }
+  # { double(:dish, name: "Salad", price: 2) }
   describe '#attack' do
     it 'damages the player' do
       expect(player_2).to receive(:reduce_hitpoints)
@@ -54,4 +54,14 @@ describe Game do
     end
   end
 
+  describe 'a player reaches zero hitpoints' do
+    #winner and loser methods, 
+    it 'starts with winner equal to nil' do
+      expect(subject.winner).to eq false
+    end
+    it 'stores the player who wins' do
+      subject.attack(player_2)
+      expect(subject.winner).to eq player_2
+    end
+  end
 end

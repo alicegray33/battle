@@ -34,8 +34,16 @@ class Battle < Sinatra::Base
   post '/attack' do
     load_game
     @game.attack(@game.defender)
-    
-    redirect '/play'
+    if @game.winner == false
+      redirect '/play'
+    else
+      redirect '/win'
+    end
+  end
+
+  get '/win' do
+    load_game
+    erb :win
   end
 
   run! if app_file == $0
