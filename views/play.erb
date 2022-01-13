@@ -1,12 +1,91 @@
-<%= @game.player_1.name %> vs <%= @game.player_2.name %>
-<br><br>
-<%= @game.player_1.name %>: <%= @game.player_1.hitpoints %>HP<br>
-<%= @game.player_2.name %>: <%= @game.player_2.hitpoints %>HP<br>
-<% if @game.last_action == :attack %>
-  <%= @game.defender.name %> attacked <%= @game.attacker.name %>!
-<% end %>
-<%= @game.attacker.name %>'s turn
-<br><br>
-<form action="/attack" method="post">
-<input type="submit" name="action" value="Attack!">
-</form>
+<html>
+  <head>
+    <title>Road Battle!</title>
+    <style>
+      body {
+        background-color:rgb(40, 40, 40);
+        font-family: fantasy;
+      }
+      table.road_scene {
+        background-image: url('/images/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width:70%; 
+        margin-left: auto; 
+        margin-right: auto;
+      }
+      table.attack_controls {
+        width:70%; 
+        margin-left: auto; 
+        margin-right: auto;
+      }
+      </style>
+  </head>
+  <body>
+    <br>
+    <div name="title" style="text-align:center; font-family: fantasy; color: red; font-size:70pt; font-weight: bold;">
+      <%= @game.player_1.name %> vs <%= @game.player_2.name %><br>
+    </div>
+    <div name="road_table">
+      <table class="road_scene">
+        <tr>
+          <td colspan="2" style="text-align:center; color: black"><h1>
+            <% if @game.last_action == :attack %>
+              <%= @game.defender.name %> attacked <%= @game.attacker.name %>!
+            <% else %>
+              <br>
+            <% end %>
+          </h1>  
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align:bottom; text-align:left;"><img src="/images/player1.png" alt="Player 1 Image" height="40%"></td>
+          <td style="vertical-align:bottom; text-align:right;"><img src="/images/player2.png" alt="Player 2 Image" height="50%"></td>
+        </tr>
+        <tr>
+          <td>
+            <table>
+              <tr>
+                <td style="background: rgba(0, 0, 0, 0.5); text-align:left; font-family: fantasy; color: white;"><h1><%= @game.player_1.name %>: <%= @game.player_1.hitpoints %>HP</h1></td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table style="align:right; margin-right: 0px; margin-left: auto;">
+              <tr>
+                <td style="background: rgba(0, 0, 0, 0.5); text-align:right; font-family: fantasy; color: white;"><h1><%= @game.player_2.name %>: <%= @game.player_2.hitpoints %>HP</h1></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div name="player_actions" style="font-family: fantasy; color: white; text-align:center">  
+      <table class="attack_controls">
+        <tr>
+          <td>
+            <% if @game.attacker.name == @game.player_1.name %>
+            <form action="/attack" method="post">
+              <input type="submit" name="action" value="Attack!" style="font-size:200%;">
+            </form>  
+            <% else %>
+              <br>
+            <% end %>
+          </td>
+          <td style="text-align:right;">
+          <% if @game.attacker.name == @game.player_2.name %>
+          <form action="/attack" method="post">
+              <input type="submit" name="action" value="Attack!" style="font-size:200%;">
+            </form>  
+            <% else %>
+              <br>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      <h1>      
+        <%= @game.attacker.name %>'s turn
+      </h1>
+    </div>
+  </body>
+</html>
